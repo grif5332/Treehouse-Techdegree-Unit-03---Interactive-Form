@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="container">
-    
+    <!--
     <header>
       <span>Register for</span>
       <h1>Full Stack Conf</h1>
@@ -34,7 +34,12 @@
           <option value="designer">Designer</option>          
           <option value="student">Student</option>
           <option value="other">Other</option>  
-        </select>           
+        </select>
+        <div class="other-title">
+          <label for="other-title">Your role:</label>
+          <input type="text" name="other-title" id="other-title" placeholder="Enter your role...">
+        </div>
+       
       </fieldset>
       
       <fieldset class="shirt">
@@ -61,26 +66,26 @@
 
         <div id="colors-js-puns" class="">
           <label for="color">Color:</label>
-          <select id="color">
+            <select id="color">
             <option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
             <option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option> 
             <option value="gold">Gold (JS Puns shirt only)</option> 
             <option value="tomato">Tomato (I &#9829; JS shirt only)</option>
             <option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option> 
-            <option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option> 
+            <option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option>
           </select>
         </div>                
       </fieldset>
-
+-->
       <fieldset class="activities">
-        <legend>Register for Activities</legend>
+        <legend>Register for Activities <span id="cost"></span></legend>
         <label><input type="checkbox" name="all"> Main Conference — $200</label>
         <label><input type="checkbox" name="js-frameworks"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
         <label><input type="checkbox" name="js-libs"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</label>
         <label><input type="checkbox" name="express"> Express Workshop — Tuesday 9am-12pm, $100</label>
         <label><input type="checkbox" name="node"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>          
         <label><input type="checkbox" name="build-tools"> Build tools Workshop — Wednesday 9am-12pm, $100</label>
-        <label><input type="checkbox" name="npm"> npm Workshop — Wednesday 1pm-4pm, $100</label>
+        <label><input type="checkbox" name="npm" > npm Workshop — Wednesday 1pm-4pm, $100</label>
                   	
       </fieldset>
       <fieldset>
@@ -150,6 +155,9 @@
       
     </form>
 
-	</div>
+  </div>
+  
+  <script src="./js/jquery-3.3.1.min.js"></script>
+  <script src="./js/app.js"></script>
 </body>
 </html>
