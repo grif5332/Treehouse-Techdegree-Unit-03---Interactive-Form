@@ -112,7 +112,10 @@ button {
 button:hover {
 	background: #184c62;
 }
-
+button:disabled {
+	background: #606161;
+	cursor: not-allowed;
+}
 /* ================================= 
   Page Styles
 ==================================== */
