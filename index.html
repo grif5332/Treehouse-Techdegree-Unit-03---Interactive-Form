@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="container">
-    <!--
+ 
     <header>
       <span>Register for</span>
       <h1>Full Stack Conf</h1>
@@ -36,7 +36,7 @@
           <option value="other">Other</option>  
         </select>
         <div class="other-title">
-          <label for="other-title">Your role:</label>
+          <label for=$other-title">Your role:</label>
           <input type="text" name="other-title" id="other-title" placeholder="Enter your role...">
         </div>
        
@@ -76,9 +76,9 @@
           </select>
         </div>                
       </fieldset>
--->
+
       <fieldset class="activities">
-        <legend>Register for Activities <span id="cost"></span></legend>
+        <legend>Register for Activities</legend>
         <label><input type="checkbox" name="all"> Main Conference — $200</label>
         <label><input type="checkbox" name="js-frameworks"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
         <label><input type="checkbox" name="js-libs"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</label>
@@ -86,8 +86,12 @@
         <label><input type="checkbox" name="node"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>          
         <label><input type="checkbox" name="build-tools"> Build tools Workshop — Wednesday 9am-12pm, $100</label>
         <label><input type="checkbox" name="npm" > npm Workshop — Wednesday 1pm-4pm, $100</label>
-                  	
+        
+        <div class="confTotal">
+          <p>Your current total: $<span id="cost">0</span></p>
+        </div>
       </fieldset>
+   
       <fieldset>
         <legend>Payment Info</legend>
 
@@ -149,8 +153,8 @@
         	<p>If you selected the Bitcoin option we'll take you to the Coinbase site to set up your billing information. Due to the nature of exchanging Bitcoin, all Bitcoin transactions will be final.</p>
         </div>                  
 
-      </fieldset>        
-        
+      </fieldset>  
+      <h2 id="debug">DEBUG SUBMIT</h2>
       <button type="submit">Register</button>
       
     </form>
