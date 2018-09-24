@@ -29,24 +29,41 @@ $(document).ready(() => {  // .ready() waits till the HTML and CSS loads
     $('#mail:input').after(ul); // places the <ul> AFTER the <input id=""mail>.
     ul.appendChild(li_1);  //appends the child <li> named li_1 to the <ul>
     li_1.after(li_2);  //appends the second child <li> names li_2 after the first <li>
+
+    // == Activity Total ==  Creates the activity total and inserts it into the html.
+    let divTotal = document.createElement('div');
+    let pTotal = document.createElement('p');
+    let spanTotal = document.createElement('span');
+    divTotal.className = "confTotal";
+    spanTotal.className = "cost";
+    pTotal.textContent = "Your current total : $";
+    spanTotal.textContent = 0;
+    $('.activities').append(divTotal);
+    divTotal.appendChild(pTotal);
+    pTotal.appendChild(spanTotal);
 });
 
 // EMAIL REAL-TIME validation
 $('#mail:input').keyup(() => {  //whenever a keyup even t happens in the email <input> ...
     let $emailCheck = $('#mail:input')[0].value;  // stores the value of the <input>
-    let $emailCheckSplit = $emailCheck.split("@"); //splits the input value at a "@" symbol.  doesn't happen till a "@" symbol happens
+     //splits the input value at a "@" symbol.  doesn't happen till a "@" symbol happens
     if($emailCheck.includes("@")) { // this checks the input for a "@"  if it happens, do the following...
         $('li:contains("@")').hide(500);  // if the <input> contains a "@", hide the <li> that says 'must have a "@"'
+        let $emailCheckSplit = $emailCheck.split("@");
         if($emailCheckSplit[1].includes('.')) {  //after the "@" happens, check to see if the second part of the input has a period.
             $('li:contains("period")').hide(500); // if it does have a period, then hide the message.
+        };
+        if(!$emailCheck.includes("@")) { // if the <input> does NOT have a "@" show the messages
+        $('li:contains("@")').show(500); //show() the message
+        $('li:contains("period")').show(500); // since the "@" is not present, the stuff in the <input> cannot be an email. show() the period msg 
+        };
+        if(!$emailCheckSplit[1].includes('.')) {  //checks to see if only the period is missing, if it is, show the period message
+            $('li:contains("period")').show(500);  //show() the message
         };
     };
     if(!$emailCheck.includes("@")) { // if the <input> does NOT have a "@" show the messages
         $('li:contains("@")').show(500); //show() the message
         $('li:contains("period")').show(500); // since the "@" is not present, the stuff in the <input> cannot be an email. show() the period msg 
-    };
-    if(!$emailCheckSplit[1].includes('.')) {  //checks to see if only the period is missing, if it is, show the period message
-        $('li:contains("period")').show(500);  //show() the message
     };
 });
 
@@ -66,10 +83,14 @@ $("#design").change(() => { //selects the design dropdown and add a "change" lis
     if ($design == "js puns") {  // conditional: takes the "value=" of $design and compares it to "js puns".
         $('#colors-js-puns').show(500);  // show()'s the "colors" drop down when a theme is selected
         $("#color option:contains('Puns')").show();  // IF the selection equals "js puns", show() the options that contain "Puns" in the text.
+        $('option[value=cornflowerblue]').attr('selected', true);
+        $('option[value=tomato]').attr('selected', false);
         $("#color option:contains('JS shirt')").hide(); // IF the selection equals "js puns", hide() the options that contain "JS shirt" in the text.
     } else if ($design == "heart js") { // conditional: takes the "value=" of $design and compares it to "heart js".
         $('#colors-js-puns').show(500);  // show()'s the "colors" drop down when a theme is selected
         $("#color option:contains('JS shirt')").show(); // IF the selection equals "heart js", show() the options that contain "JS shirt" in the text.
+        $('option[value=tomato]').attr('selected', true);
+        $('option[value=cornflowerblue]').attr('selected', false);
         $("#color option:contains('Puns')").hide();  // IF the selection equals "heart js", hide() the options that contain "Puns" in the text.
     } else {
         $('#colors-js-puns').hide(500);  // if the "select theme" drop down is moved back to "select Theme" hide the "colors" drop down
@@ -162,7 +183,7 @@ $activities.change((event) => {  // The change event for the activities section.
     } else {  // WHEN the target is UNCHECKED... 
         $(`input[name="${$activityConflict}"]`).prop('disabled', false);  //run through the switch and enable the conflicts checkbox.
     };
-    $("#cost").text($confTotal);  // this takes the amount stored in $confTotal and writes it to the screen 
+    $('p').text("Your current total : $" + $confTotal);  // this takes the amount stored in $confTotal and writes it to the screen 
 });
 
 //payment section
