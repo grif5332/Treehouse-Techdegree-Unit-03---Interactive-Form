@@ -231,6 +231,7 @@ $('button').click((event) => {  // this runs the validity checks.  also brings a
 // == email section ==
     let emailValid = false;   // validity check for the "EMAIL" section.  Set initially to false
     let $emailInput = $('#mail:input');  //  inserts the value of the text input in the variable
+    let $emailCheck = $('#mail:input')[0].value;
     if($emailInput[0].value == '') {  //if() the value of the $emailInput is empty....
         $emailInput.attr('placeholder', 'Please enter your email!');  // if empty, show placeholder text
         $emailInput.css({"border-color" : "red", "background-color" : "#F5B7B1", "color" : "red"}); // if empty, change the styling of the box
@@ -239,7 +240,15 @@ $('button').click((event) => {  // this runs the validity checks.  also brings a
             $emailInput.css({"border-color" : "inherit", "background-color" : "", "color" : "inherit"});  // reverts the box back to normal.
         });
     } else {  // if the $emailInput passes validation, turn the email validity switch to true!
-        emailValid = true;  // if this section is valid turns the "flag" to TRUE
+        if($emailCheck.includes("@")) {  //checks to see if the <input> has a "@"
+            let $emailCheckSplit = $emailCheck.split("@"); //if it does, split the string.
+            if($emailCheckSplit[1].includes(".")) { // checks if the second part of the split has a period.
+                let $emailCheckSplit2 = $emailCheckSplit[1].split(".");  // if it does, split the second string.
+                if($emailCheckSplit2[1].length >= 2) { // checks if the string after the period has 2 or more characters. *i don't recall there being 1 cahracter TLD's*
+                    emailValid = true;  // if this section is valid turns the "flag" to TRUE
+                }; 
+            };
+        };
     };
 
 // == job role section ==
