@@ -37,6 +37,7 @@ $(document).ready(() => {  // .ready() waits till the HTML and CSS loads
     let spanTotal = document.createElement('span');
     divTotal.className = "confTotal";
     spanTotal.className = "cost";
+    pTotal.className = "pTotal"
     pTotal.textContent = "Your current total : $";
     spanTotal.textContent = 0;
     $('.activities').append(divTotal);
@@ -184,7 +185,7 @@ $activities.change((event) => {  // The change event for the activities section.
     } else {  // WHEN the target is UNCHECKED... 
         $(`input[name="${$activityConflict}"]`).prop('disabled', false);  //run through the switch and enable the conflicts checkbox.
     };
-    $('p').text("Your current total : $" + $confTotal);  // this takes the amount stored in $confTotal and writes it to the screen 
+    $('.pTotal').text("Your current total : $" + $confTotal);  // this takes the amount stored in $confTotal and writes it to the screen 
 });
 
 //payment section
@@ -197,7 +198,7 @@ const $paymentSelector = $('select[name="user_payment"]');  // var for the payme
 
 $paymentSelector.change(() => {  // this dicates what payment items are shown.
     if ($paymentSelector[0].value == 'credit card') {  // IF the value of the dropdown is "credit card" do the following
-        $paypalSelector.show(); // == SHOW == the paypal <div>
+        //$paypalSelector.show(); // == SHOW == the paypal <div>  ***************************************************************
         $ccSelector.show();  //  the "credit card" form!
         $paypalSelector.hide(); // hide the paypal <div>
         $bitcoinSelector.hide(); //hide the bitcoin <div>
