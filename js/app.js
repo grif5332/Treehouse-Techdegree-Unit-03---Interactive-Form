@@ -331,6 +331,9 @@ $('button').click((event) => {  // this runs the validity checks.  also brings a
                 $('#cc-num:input').css({"border-color" : "inherit", "background-color" : "", "color" : "inherit"}); //  reset the <input> box.
             });
         };
+        if(($ccNumber_updated / 1) != $ccNumber_updated) {
+            alert('you have a letter');
+        };
 // == cc zipcode ==
         if($ccZipCode.length == '' || $ccZipCode.length < 5 || $ccZipCode.length > 5) {  // If() the length of the Zip Code is either empty, <5, or >5, do the following...
             $('#zip:input')[0].value = '';  //reset the value to empty
@@ -340,7 +343,7 @@ $('button').click((event) => {  // this runs the validity checks.  also brings a
                 $('#zip:input').attr('placeholder', ''); //remove the placeholder text.
                 $('#zip:input').css({"border-color" : "inherit", "background-color" : "", "color" : "inherit"});  //  reset the <input styling!
             });
-        }; 
+        };
 // == payment cvv ==
         if($ccCVV.length == '' || $ccCVV.length < 3 || $ccCVV.length > 3) {  //  IF() the length of the CVV is either empty, <3, or >3 run the following...
             $('#cvv:input')[0].value = '';  // reset the <input> value
@@ -353,7 +356,7 @@ $('button').click((event) => {  // this runs the validity checks.  also brings a
         };
         
         // == checks if the payment section is ALL valid! ==
-        if($ccNumber_updated.length == 16 && $ccZipCode.length == 5 && $ccCVV.length == 3) { // If the CC# is valid, the ZipCode is valid, and the CVV is valid, turn the paymentVaild to true.
+        if($ccNumber_updated.length >= 13 && $ccNumber_updated.length <= 16 && $ccZipCode.length == 5 && $ccCVV.length == 3) { // If the CC# is valid, the ZipCode is valid, and the CVV is valid, turn the paymentVaild to true.
            paymentValid = true;  // if this section is valid turns the "flag" to TRUE   
         };
     };
