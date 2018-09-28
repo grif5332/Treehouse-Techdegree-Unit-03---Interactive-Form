@@ -18,7 +18,8 @@ $(document).ready(() => {  // .ready() waits till the HTML and CSS loads
     $bitcoinSelector.hide();  // initialy hides the bitcoin payment <div>.
     $paypalSelector.hide();  //initially hides the paypal <div>
     $('#colors-js-puns').hide();  //initially hides the "colors" drop down.  when user selets a theme, this will show()
-    
+    $('input[type=checkbox]:checked').prop('checked', false); //if, you hit the back button, this clears out the checkboxes.
+
     // == EMAIL INIT == Adds a list below the email input.  As the user types, the form will watch to make use the items are included!
     let ul = document.createElement('ul'); // creates a <ul> for the email requirements 
     let li_1 = document.createElement('li'); //creates an <li>.
@@ -331,11 +332,16 @@ $('button').click((event) => {  // this runs the validity checks.  also brings a
                 $('#cc-num:input').css({"border-color" : "inherit", "background-color" : "", "color" : "inherit"}); //  reset the <input> box.
             });
         };
-        if(($ccNumber_updated / 1) != $ccNumber_updated) {
-            alert('you have a letter');
+        if(($ccNumber_updated / 1) != $ccNumber_updated) {   // checks to see if the string entered is a number.
+            $('#cc-num:input').attr('placeholder', 'Use only numbers please!');  // change the placeholder text.
+            $('#cc-num:input').css({"border-color" : "red", "background-color" : "#F5B7B1", "color" : "red"});  // change the <input> box styling
+            $('#cc-num:input').focus(() => {  // on re-focus after validity failure, do the following.
+                $('#cc-num:input').attr('placeholder', '');  //  remove the placeholder text.
+                $('#cc-num:input').css({"border-color" : "inherit", "background-color" : "", "color" : "inherit"}); //  reset the <input> box.
+            });
         };
 // == cc zipcode ==
-        if($ccZipCode.length == '' || $ccZipCode.length < 5 || $ccZipCode.length > 5) {  // If() the length of the Zip Code is either empty, <5, or >5, do the following...
+        if($ccZipCode.length == '' || $ccZipCode.length < 5 || $ccZipCode.length > 5 || (($ccZipCode / 1) != $ccZipCode)) {  // If() the length of the Zip Code is either empty, <5, or >5, and/or and/or has a letter, do the following...
             $('#zip:input')[0].value = '';  //reset the value to empty
             $('#zip:input').attr('placeholder', 'Invalid Zipcode');  //if invalid, insert the placeholder text.
             $('#zip:input').css({"border-color" : "red", "background-color" : "#F5B7B1", "color" : "red"});  // Change the <input> box styling
@@ -345,7 +351,7 @@ $('button').click((event) => {  // this runs the validity checks.  also brings a
             });
         };
 // == payment cvv ==
-        if($ccCVV.length == '' || $ccCVV.length < 3 || $ccCVV.length > 3) {  //  IF() the length of the CVV is either empty, <3, or >3 run the following...
+        if($ccCVV.length == '' || $ccCVV.length < 3 || $ccCVV.length > 3 || (($ccCVV / 1) != $ccCVV)) {  //  IF() the length of the CVV is either empty, <3, or >3, and/or has a letter, run the following...
             $('#cvv:input')[0].value = '';  // reset the <input> value
             $('#cvv:input').attr('placeholder', 'Invalid CVV');  // show the placeholder text
             $('#cvv:input').css({"border-color" : "red", "background-color" : "#F5B7B1", "color" : "red"});  // change the <input> box.
@@ -356,7 +362,7 @@ $('button').click((event) => {  // this runs the validity checks.  also brings a
         };
         
         // == checks if the payment section is ALL valid! ==
-        if($ccNumber_updated.length >= 13 && $ccNumber_updated.length <= 16 && $ccZipCode.length == 5 && $ccCVV.length == 3) { // If the CC# is valid, the ZipCode is valid, and the CVV is valid, turn the paymentVaild to true.
+        if( (($ccNumber_updated / 1) == $ccNumber_updated) && $ccNumber_updated.length >= 13 && $ccNumber_updated.length <= 16 && $ccZipCode.length == 5 && (($ccZipCode / 1) == $ccZipCode) && $ccCVV.length == 3 && (($ccCVV / 1) == $ccCVV)) { // If the CC# is valid, the ZipCode is valid, and the CVV is valid, turn the paymentVaild to true.
            paymentValid = true;  // if this section is valid turns the "flag" to TRUE   
         };
     };
