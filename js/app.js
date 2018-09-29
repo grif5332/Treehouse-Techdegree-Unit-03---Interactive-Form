@@ -206,8 +206,14 @@ $('button').click((event) => {  // this runs the validity checks.  also brings a
                 let $emailCheckSplit2 = $emailCheckSplit[1].split(".");  // if it does, split the second string.
                 if($emailCheckSplit2[1].length >= 2) { // checks if the string after the period has 2 or more characters. *i don't recall there being 1 cahracter TLD's*
                     emailValid = true;  // if this section is valid turns the "flag" to TRUE
+                } else {
+                    $inputError('#mail', 'Please enter a valid email!');
                 }; 
+            } else {
+                $inputError('#mail', 'Please enter a valid email!');
             };
+        } else {
+            $inputError('#mail', 'Please enter a valid email!');
         };
     };
 
